@@ -1,4 +1,4 @@
-import { PublicClientApplication, AccountInfo } from '@azure/msal-browser';
+import { PublicClientApplication } from '@azure/msal-browser';
 import { WebPlugin } from '@capacitor/core';
 
 import type { BaseOptions, MsAuthPlugin } from './definitions';
@@ -17,7 +17,7 @@ interface AuthResult {
   accessToken: string;
   idToken: string;
   scopes: string[];
-  account: AccountInfo | null;
+  username?: string;
 }
 
 export class MsAuth extends WebPlugin implements MsAuthPlugin {
@@ -76,7 +76,9 @@ export class MsAuth extends WebPlugin implements MsAuthPlugin {
       prompt: 'select_account',
     });
 
-    return { accessToken, idToken, account, scopes };
+    const username = account?.username;
+
+    return { accessToken, idToken, username, scopes };
   }
 
   private async acquireTokenSilently(context: PublicClientApplication, scopes: string[]): Promise<AuthResult> {
@@ -85,6 +87,8 @@ export class MsAuth extends WebPlugin implements MsAuthPlugin {
       account: context.getAllAccounts()[0],
     });
 
-    return { accessToken, idToken, account, scopes };
+    const username = account?.username;
+
+    return { accessToken, idToken, username, scopes };
   }
 }

@@ -43,7 +43,8 @@ public class MsAuthPlugin: CAPPlugin {
             call.resolve([
                 "accessToken": result.accessToken,
                 "idToken": result.idToken,
-                "scopes": result.scopes
+                "scopes": result.scopes,
+                "username": result.account.username
             ])
         }
 
