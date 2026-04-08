@@ -1,3 +1,5 @@
+import { AccountInfo } from "@azure/msal-browser";
+
 export interface BaseOptions {
   clientId: string;
   tenant?: string;
@@ -18,7 +20,7 @@ export interface LoginOptions extends BaseOptions {
 export type LogoutOptions = BaseOptions;
 
 export interface MsAuthPlugin {
-  login(options: LoginOptions): Promise<{ accessToken: string; idToken: string; scopes: string[] }>;
+  login(options: LoginOptions): Promise<{ accessToken: string; idToken: string; scopes: string[], account: AccountInfo | null }>;
   logout(options: LogoutOptions): Promise<void>;
   logoutAll(options: LogoutOptions): Promise<void>;
 }
