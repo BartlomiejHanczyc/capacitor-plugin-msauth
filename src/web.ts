@@ -17,7 +17,7 @@ interface AuthResult {
   accessToken: string;
   idToken: string;
   scopes: string[];
-  account: AccountInfo;
+  account: AccountInfo | null;
 }
 
 export class MsAuth extends WebPlugin implements MsAuthPlugin {
