@@ -5,6 +5,7 @@ public class TokenResult {
     private String accessToken;
     private String idToken;
     private String[] scopes;
+    private String username;
 
     public String getAccessToken() {
         return accessToken;
@@ -28,5 +29,13 @@ public class TokenResult {
 
     public void setScopes(String[] scopes) {
         this.scopes = scopes;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

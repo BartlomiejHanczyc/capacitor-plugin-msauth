@@ -79,6 +79,7 @@ public class MsAuthPlugin extends Plugin {
                         result.put("idToken", tokenResult.getIdToken());
                         JSONArray scopes = new JSONArray(Arrays.asList(tokenResult.getScopes()));
                         result.put("scopes", scopes);
+                        result.put("username", tokenResult.getUsername());
 
                         call.resolve(result);
                     } else {
@@ -159,6 +160,7 @@ public class MsAuthPlugin extends Plugin {
                 tokenResult.setAccessToken(silentAuthResult.getAccessToken());
                 tokenResult.setIdToken(account.getIdToken());
                 tokenResult.setScopes(silentAuthResult.getScope());
+                tokenResult.setUsername(account.getUsername());
 
                 callback.tokenReceived(tokenResult);
 
@@ -189,6 +191,7 @@ public class MsAuthPlugin extends Plugin {
                         tokenResult.setAccessToken(authenticationResult.getAccessToken());
                         tokenResult.setIdToken(account.getIdToken());
                         tokenResult.setScopes(authenticationResult.getScope());
+                        tokenResult.setUsername(account.getUsername());
 
                         callback.tokenReceived(tokenResult);
                     }
